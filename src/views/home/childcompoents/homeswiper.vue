@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="hoemswiper">
     <swiper>
       <swiperitem v-for="(item,index) in banners" :key="index">
           <a :href="item.link">
@@ -30,5 +30,7 @@ export default {
 </script>
 
 <style>
-
+.hoemswiper{
+    padding-top: 44px;
+}
 </style>
