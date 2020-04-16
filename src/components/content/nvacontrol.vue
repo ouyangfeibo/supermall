@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .navcontrol{
     display: flex;
     text-align: center;

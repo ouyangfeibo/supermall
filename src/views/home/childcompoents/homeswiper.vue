@@ -30,7 +30,4 @@ export default {
 </script>
 
 <style>
-.hoemswiper{
-    padding-top: 44px;
-}
 </style>

@@ -1,12 +1,14 @@
 <template>
-  <div>
+  <div id="home">
       <navbar class="navbar"><div slot="center">购物街</div></navbar>
-      <homeswiper :banners="banners"></homeswiper>
-      <homerecommend :recommends="recommends"></homerecommend>
-      <homefeature></homefeature>
-      <navcontrol class="navcontrol" :titles="['流行','新款','精选']" @tabclick="tabclick"></navcontrol>
-      <goodsshow :goods="goods[goodstype].list"></goodsshow>
-      
+      <betterscroll class="content" ref="betterscroll" :probetype=3 @positionscroll="positionscroll" :pullupload="true" @loadup="loadup">
+        <homeswiper :banners="banners"></homeswiper>
+        <homerecommend :recommends="recommends"></homerecommend>
+        <homefeature></homefeature>
+        <navcontrol class="navcontrol" :titles="['流行','新款','精选']" @tabclick="tabclick"></navcontrol>
+        <goodsshow :goods="goods[goodstype].list"></goodsshow>
+      </betterscroll>
+      <backtop @click.native="clicktop" v-show="showtop"></backtop>
   </div>
 </template>
 
@@ -18,6 +20,8 @@ import homefeature from './childcompoents/homefeature'
 
 import navcontrol from '../../components/content/nvacontrol'
 import goodsshow from '../../components/content/goodsshow'
+import betterscroll from '../../components/common/betterscroll/betterscroll'
+import backtop from '../../components/content/backtop'
 
 import {getHomeMultidata,getHomeGoods} from 'network/home'
 
@@ -33,7 +37,8 @@ export default {
           'new':{page:0,list:[]},
           'sell':{page:0,list:[]},
         },
-        goodstype :'pop'
+        goodstype :'pop',
+        showtop:false,
       }
     },
   
@@ -43,7 +48,9 @@ export default {
       homerecommend,
       homefeature,
       navcontrol,
-      goodsshow
+      goodsshow,
+      betterscroll,
+      backtop
     },
     created () {
       this.getHomeMultidata()
@@ -65,10 +72,19 @@ export default {
             break
         }
       },
+    clicktop(){
+      this.$refs.betterscroll.scrollTo(0,0)
+    },  
+    positionscroll(position){
+      this.showtop = position.y<-800
+    },
+    loadup(){
+      this.getHomeGoods(this.goodstype)
+      console.log("加载成功")
+    },
 
 
-
-
+      // 网络请求
       getHomeMultidata(){
         getHomeMultidata().then(res =>{
           this.banners = res.data.data.banner.list;
@@ -88,14 +104,20 @@ export default {
           //方法3 this.goods[type].list = res.data.data.list.concat(this.goods[type].list)
 
           this.goods[type].page += 1
-          console.log(this.goods[type].list)
+
+          this.$refs.betterscroll.scroll.finishPullUp()
+          // console.log(this.goods[type].list)
       })
       }
     }
 }
 </script>
 
-<style>
+<style scoped>
+#home{
+  height: 100vh;
+  padding-top: 43px;
+}
 .navbar{
   position: fixed;
   top: 0px;
@@ -107,5 +129,9 @@ export default {
   position: sticky;
   top: 44px;
   z-index: 9;
+}
+.content{
+  height: 86.1vh;
+  overflow: hidden;
 }
 </style>

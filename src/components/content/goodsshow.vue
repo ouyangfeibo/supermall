@@ -23,11 +23,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .goodsshow{
     display: flex;
     flex-wrap: wrap; 
    justify-content: space-around;
-   padding-bottom: 49px;
 }
 </style>

@@ -27,7 +27,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 @import url(//at.alicdn.com/t/font_1590380_0eraxhc8240r.css);
 .goodsshowitem{
     padding-bottom: 45px;
