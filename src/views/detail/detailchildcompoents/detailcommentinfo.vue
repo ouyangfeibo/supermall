@@ -1,18 +1,20 @@
 <template>
   <div class="detailcommentinfo">
-      <div><span>用户评价：</span></div>
+      <div class="text"><span>——————用户评价——————</span></div>
+      <div class="content">
       <div v-for="(item,index) in rate" :key="index">
           <div class="user">
               <img :src="item.user.avatar" alt="">
               <span>{{item.user.uname}}</span>
           </div>
-          <div>
-              <span>{{item.content}}</span>
-              <div v-for="(item, index) in item.images" :key="index"><img :src="item" alt=""></div>
+          <div class="talk">
+              <div>{{item.content}}</div>
+              <span class="talkimg" v-for="(item, index) in item.images" :key="index"><img :src="item" alt=""></span>
           </div>
-          <div>
+          <div class="create">
               <span>{{item.created | showdate}}</span>
-              <span>{{item.style}}</span>
+              <span class="style">{{item.style}}</span>
+          </div>
           </div>
       </div>
   </div>
@@ -34,6 +36,33 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.content{
+    margin-left: 15px;
+}
+.text{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.user img{
+    border-radius: 50%;
+    width: 50px;
+}
+.user span{
+    vertical-align: 16px;
+    padding-left: 15px;
+    font-size: 13px;
+}
+.talk{
+    margin: 15px 0 15px;
+}
+.talk .talkimg img{
+    width: 100px;
+}
+.create{
+    font-size: 13px;
+}
+.style{
+    margin-left: 15px;
+}
 </style>

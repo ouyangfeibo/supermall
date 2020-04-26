@@ -69,15 +69,14 @@ export default {
         refreshs()
       })
     },
-    // activated () {
-    //   // this.$refs.betterscroll.scrollTo
-    //   console.log(this.$refs.betterscroll.scrollTo)
-    // },
-    // deactivated () {
-    //   console.log(this.savey)
-    //   // this.savey = this.$refs.betterscroll.scroll.y
-      
-    // },
+    activated () {
+      this.$refs.betterscroll.refresh()
+      this.$refs.betterscroll.scrollTo(0,this.savey,0)
+      console.log(this.savey)
+    },
+    deactivated () {
+      this.savey = this.$refs.betterscroll.getScrollY()
+    },
     methods: {
       //防抖函数当图片加载完成定时执行betterscroll.refresh，重新计算高度
       debounce(func,delay){
@@ -114,8 +113,7 @@ export default {
     //当下拉到大于800时改变showtop为ture
     positionscroll(position){
       this.showtop = position.y<-800,
-      this.isshow = this.eltop-44<(-position.y),
-      this.savey = position.y
+      this.isshow = this.eltop-44<(-position.y)
     },
     loadup(){
       this.getHomeGoods(this.goodstype)
@@ -126,6 +124,7 @@ export default {
       this.eltop = this.$refs.navcontrol2.$el.offsetTop
       // console.log(this.$refs.navcontrol2.$el.offsetTop)
     },
+
 
       // 网络请求
       getHomeMultidata(){

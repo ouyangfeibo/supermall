@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <detainav class="nav"></detainav>
-    <betterscroll class="scrollcontent">
+    <betterscroll class="scrollcontent" ref="scroll">
       <detailswiper :topimages="topimages"></detailswiper>
       <detailgoodstitle
         :goodstitle="title"
@@ -12,9 +12,10 @@
         :services="services"
       ></detailgoodstitle>
       <detailshopinfo :shopInfo="shopInfo"></detailshopinfo>
-      <detailshowimg :detailInfo ='detailInfo'></detailshowimg>
+      <detailshowimg :detailInfo ='detailInfo' @imgload = 'imgload'></detailshowimg>
       <detailparaminfo :itemParams ='itemParams' :set ='set' :tables ="tables"></detailparaminfo>
       <detailcommentinfo :rate='rate'></detailcommentinfo>
+      <detailrecommend :recommendlist='recommendlist'></detailrecommend>
     </betterscroll>
   </div>
 </template>
@@ -28,8 +29,9 @@ import betterscroll from "../../components/common/betterscroll/betterscroll";
 import detailshowimg from './detailchildcompoents/detailshowimg'
 import detailparaminfo from './detailchildcompoents/detailparaminfo'
 import detailcommentinfo from './detailchildcompoents/detailcommentinfo'
+import detailrecommend from './detailchildcompoents/detailrecommend'
 
-import { getdetail } from "network/detail";
+import { getdetail,getrecommend } from "network/detail";
 
 export default {
   name: "detail",
@@ -49,7 +51,8 @@ export default {
     betterscroll,
     detailshowimg,
     detailparaminfo,
-    detailcommentinfo
+    detailcommentinfo,
+    detailrecommend
   },
   data() {
     return {
@@ -67,6 +70,7 @@ export default {
       tables:[],
       set:[],
       rate:[],
+      recommendlist:[]
     };
   },
   created() {
@@ -74,7 +78,7 @@ export default {
     this.iid = this.$route.params.iid;
     //2.根据iid请求相应的数据
     getdetail(this.iid).then(res => {
-      console.log(res);
+      // console.log(res);
       this.topimages = res.data.result.itemInfo.topImages;
       this.title = res.data.result.itemInfo.title;
       this.price = res.data.result.itemInfo.price;
@@ -93,8 +97,17 @@ export default {
       //评论数据
       this.rate = res.data.result.rate.list
     });
+    getrecommend().then( res =>{
+      console.log(res)
+      this.recommendlist = res.data.data.list
+      // console.log(this.recommendlist.length)
+    })
   },
-  methods: {}
+  methods: {
+    imgload(){
+        this.$refs.scroll.refresh()
+    }
+  }
 };
 </script>
 

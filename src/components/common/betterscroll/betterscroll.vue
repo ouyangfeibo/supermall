@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import betterscroll from 'better-scroll'
+import BScroll from 'better-scroll'
 export default {
     name:'bettrtscroll',
     props: {
@@ -19,17 +19,16 @@ export default {
         },
         pullupload:{
             type:Boolean
-        }
+        },
+        
     },
     data () {
         return {
-             savey:0
-
+            
         }
     },
     mounted() { 
-        this.$nextTick(() => { 
-        this.scroll = new betterscroll(this.$refs.wrapper, {
+        this.scroll = new BScroll(this.$refs.wrapper, {
             click:true,
             probeType:this.probetype,
             pullUpLoad:this.pullupload
@@ -40,7 +39,6 @@ export default {
         this.scroll.on('pullingUp',() =>{
             this.$emit('loadup')
         })
-      })
     },
     methods:{
         scrollTo(x,y,time=500){
@@ -48,7 +46,10 @@ export default {
         },
         refresh(){
             this.scroll.refresh()
-        }
+        },
+        getScrollY() {
+        return this.scroll.y
+      }
     } 
 }
 

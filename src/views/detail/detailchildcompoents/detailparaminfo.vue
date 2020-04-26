@@ -1,5 +1,6 @@
 <template>
   <div class="param-info">
+    <div class="text">——————参数列表——————</div>
     <table v-for="(table, index) in tables"
            class="info-size" :key="index">
       <tr v-for="(tr, indey) in table" :key="indey">
@@ -39,6 +40,9 @@
 </script>
 
 <style scoped>
+.text{
+  text-align: center;
+}
   .param-info {
     padding: 20px 15px;
     font-size: 14px;
