@@ -1,7 +1,7 @@
 <template>
-  <div class="goodsshowitem">
+  <div class="goodsshowitem" @click="itemclick">
     <div>
-        <img :src="goodsitem.show.img" alt="">
+        <img :src="goodsitem.show.img" alt="" @load="imgload">
         <div class="bottomtext">
             <p>{{goodsitem.title}}</p>
             <span class="price">￥{{goodsitem.price}}</span>
@@ -22,6 +22,14 @@ export default {
             defalut(){
                 return {}
             }
+        }
+    },
+    methods: {
+        imgload(){
+            this.$bus.$emit("goodsitemimgload")
+        },
+        itemclick(){
+            this.$router.push('./detail/'+this.goodsitem.iid)
         }
     }
 }

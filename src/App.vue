@@ -1,6 +1,8 @@
 <template>
   <div id="app"> 
-    <router-view/>
+    <keep-alive exclude="detail">
+      <router-view/>
+    </keep-alive> 
     <tabbar> 
         <tabbaritem path='/home'>
           <img src="./assets/img/home.svg" slot="item-img" alt />
@@ -40,6 +42,9 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+#app{
+  height: 100vh;
+  overflow: hidden;
+}
 </style>

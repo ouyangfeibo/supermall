@@ -17,7 +17,7 @@ export default {
     display: flex;
     line-height: 44px;
     color: white;
-    background: lightcoral;
+    /* background: lightcoral; */
     width: 100%;
 }
 .left,.right{

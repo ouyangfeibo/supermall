@@ -23,7 +23,7 @@ export default {
     },
     data () {
         return {
-            scroll:null,
+             savey:0
 
         }
     },
@@ -46,7 +46,9 @@ export default {
         scrollTo(x,y,time=500){
             this.scroll.scrollTo(x,y,time)
         },
-
+        refresh(){
+            this.scroll.refresh()
+        }
     } 
 }
 

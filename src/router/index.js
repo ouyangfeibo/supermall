@@ -4,6 +4,7 @@ const Home = () => import('views/home/home')
 const Category = () => import('views/category/category')
 const Cart = () => import('views/cart/cart')
 const Profile = () => import('views/profile/profile')
+const detail = () => import('views/detail/detail')
 
 Vue.use(VueRouter)
 
@@ -38,6 +39,13 @@ const routes = [
         component: Profile,
        meta:{
            title:"个人"
+       }
+    },
+    {
+        path:'/detail/:iid',
+        component: detail,
+       meta:{
+           title:"详情页"
        }
     }
 ]
