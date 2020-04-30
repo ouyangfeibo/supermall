@@ -72,7 +72,7 @@ export default {
     activated () {
       this.$refs.betterscroll.refresh()
       this.$refs.betterscroll.scrollTo(0,this.savey,0)
-      console.log(this.savey)
+      // console.log(this.savey)
     },
     deactivated () {
       this.savey = this.$refs.betterscroll.getScrollY()

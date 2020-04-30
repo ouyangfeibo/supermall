@@ -5,7 +5,7 @@
         <div class="bottomtext">
             <p>{{goodsitem.title}}</p>
             <span class="price">￥{{goodsitem.price}}</span>
-            <span class="iconfont icon-pingjiaxingxing" style="color:lightcoral"></span>
+            <span class="iconfont iconpingjiaxingxing" style="color:lightcoral"></span>
             <span class="collect">{{goodsitem.cfav}}</span>
             <div></div>
         </div>
@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style scoped>
-@import url(//at.alicdn.com/t/font_1590380_0eraxhc8240r.css);
+@import url(//at.alicdn.com/t/font_1788006_eg0sbsnhx0a.css);
 .goodsshowitem{
     padding-bottom: 45px;
     position: relative;

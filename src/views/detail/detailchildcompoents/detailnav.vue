@@ -24,6 +24,7 @@ export default {
     methods: {
        currentclick(index){
             this.currentindex = index
+            this.$emit("navclick",index)
         },
         back(){
             this.$router.back()
