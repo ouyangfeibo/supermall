@@ -89,7 +89,7 @@ export default {
       console.log(res);
       this.topimages = res.data.result.itemInfo.topImages;
       this.title = res.data.result.itemInfo.title;
-      this.price = res.data.result.itemInfo.price;
+      this.price = res.data.result.itemInfo.lowNowPrice;
       this.oldprice = res.data.result.itemInfo.oldPrice;
       this.discountDesc = res.data.result.itemInfo.discountDesc;
       this.columns = res.data.result.columns;

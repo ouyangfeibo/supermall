@@ -1,7 +1,7 @@
 <template>
   <div class="shopitem">
       <div class="itemselector">
-          
+          <checkbutton ref="checkbutton" :ischeck = "product.checked" @click.native="checkclick"></checkbutton>
       </div>
       <div class="itemimage">
           <img :src="product.image" alt="商品图片">
@@ -10,7 +10,7 @@
           <div class="itemtitle">{{product.title}}</div>
           <div class="itemdesc">{{product.desc}}</div>
           <div class="infobottom">
-              <div class="itemprice ">{{product.price}}</div>
+              <div class="itemprice ">￥{{product.price}}</div>
               <div class="itemcount ">x{{product.count}}</div>
           </div>
       </div>
@@ -18,11 +18,21 @@
 </template>
 
 <script>
+import checkbutton from '../../../components/content/checkbutton'
 export default {
     name:'cartlistitem',
     props:{
         product:{
             type:Object
+        }
+    },
+    components: {
+        checkbutton
+    },
+    methods: {
+        checkclick(){
+            this.product.checked = !this.product.checked
+
         }
     }
     
@@ -35,10 +45,17 @@ export default {
     height: 130px;
     border: 2px solid lightcoral;
     padding-top: 10px;
+    position: relative;
+}
+.itemselector{
+    position: absolute;
+    left: 5px;
+    top: 40%;
 }
 .itemimage{
+    margin-left: 30px;
     float: left;
-    width: 22%;
+    width: 21%;
 }
 .itemimage img{
     width: 80px;
@@ -47,7 +64,7 @@ export default {
     border-radius: 5px;
 }
 .iteminfo{
-    width: 77%;
+    width: 70%;
     padding-left: 5px;
     font-size: 17px;
     color: #333;

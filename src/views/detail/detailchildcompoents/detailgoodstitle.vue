@@ -2,7 +2,7 @@
     <div>
         <div class="goodstitle">{{goodstitle}}</div>
         <div class="price">
-            <span class="newprice">{{price}}</span>
+            <span class="newprice">￥{{price}}</span>
             <span class="oldprice">{{oldprice}}</span>
             <span class="discountDesc" v-show="discountDesc">{{discountDesc}}</span>
         </div>
